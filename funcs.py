@@ -62,7 +62,8 @@ def index_status(date_range):
     if today > end_date:
         return "Perioada auto-citirii a trecut"
 
-def send_email(user_email, message_raw):
+def send_email(user_email, message_raw, gmail_pass):
+
     host = 'smtp.gmail.com'
     port = 465
     context = ssl.create_default_context()
@@ -75,7 +76,7 @@ def send_email(user_email, message_raw):
     msg['To'] = "cipi01work@gmail.com"
 
     with smtplib.SMTP_SSL(host, port, context=context) as server:
-        server.login("cipi01work@gmail.com", os.getenv('gmail-api-pass'))
+        server.login("cipi01work@gmail.com", gmail_pass)
         server.send_message(msg)
 
 if __name__ == "__main__":
