@@ -51,5 +51,4 @@ def get_data_gaz(username, password):
 
 
 if __name__ == "__main__":
-    a = get_data_gaz("andreeamarian24@yahoo.it", "Baritiu109a")
-    print(a)
+    print(4)

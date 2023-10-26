@@ -47,5 +47,4 @@ def get_data_el(username, password):
 
 
 if __name__ == '__main__':
-    data = get_data_el("andreeamarian24@yahoo.it","Baritiu109a")
-    print(data)
+    print(4)

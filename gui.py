@@ -3,8 +3,7 @@ from Electrica.main import get_data_el
 import PySimpleGUI as sg
 from funcs import g_text_to_month, e_text_to_month, index_status
 
-USERNAME = "andreeamarian24@yahoo.it"
-PASS = "Baritiu109a"
+
 #TODO: Make additional gui for log in(Username+pass) which will be saved after
 
 data_g = get_data_gaz()
