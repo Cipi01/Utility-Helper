@@ -2,17 +2,18 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.chrome.service import Service
 
 
 def get_data_gaz(username, password):
-    options = webdriver.ChromeOptions()
-    options.binary_location = "C:/Program Files/BraveSoftware/Brave-Browser/Application/brave.exe"
-    #options.add_argument('--headless=new')
+    options = Options()
+    options.binary_location = "C:/Program Files/Mozilla Firefox/firefox.exe"
+    #options.add_argument('-headless')
     #options.add_argument('window-size=1920x1080')
     #options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36')
-    driver = webdriver.Chrome(options=options)
+
+    driver = webdriver.Firefox(options)
     driver.implicitly_wait(10)
     driver.get('https://www.eon.ro/myline/login')
     driver.implicitly_wait(10)

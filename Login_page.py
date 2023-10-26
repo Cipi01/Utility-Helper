@@ -1,6 +1,7 @@
 import streamlit as st
 from Electrica.main import get_data_el
 from EONgaz.main import get_data_gaz
+
 st.set_page_config(
     page_title="Utility helper"
 )
@@ -17,7 +18,7 @@ service = st.radio(
 if service == "1":
     st.text("Please insert login credentials for EON")
     user_name = st.text_input("User name")
-    user_pass = st.text_input("Password")
+    user_pass = st.text_input("Password", type="password")
     if st.button("Start", key="eon_button"):
         if user_name == '' or user_pass == '':
             st.text("Please input a value inside the username or password field!")
@@ -37,7 +38,7 @@ if service == "1":
 if service == "2":
     st.text("Please insert login credentials for Electrica")
     user_name = st.text_input("User name")
-    user_pass = st.text_input("Password")
+    user_pass = st.text_input("Password", type="password")
     if st.button("Start", key="El_button"):
         if user_name == '' or user_pass == '':
             st.text("Please input a value inside the username or password field!")
@@ -59,7 +60,28 @@ if service == '3':
     st.text("Please insert login credentials for *as follows*")
     st.subheader("EON")
     user_name_g = st.text_input("User name EON")
-    user_pass_g = st.text_input("Password EON")
+    user_pass_g = st.text_input("Password EON", type="password")
     st.subheader("Electrica")
     user_name_e = st.text_input("User name Electrica")
-    user_pass_e = st.text_input("Password Electrica" )
+    user_pass_e = st.text_input("Password Electrica", type="password" )
+
+    if st.button("Start", key="Mixed_button"):
+        if user_name_g == '' or user_pass_g == '' or user_name_e == '' or user_pass_e == '':
+            st.text("Please input a value inside the username or password field!")
+        else:
+            data_list_raw_e = get_data_el(username=user_name_e, password=user_pass_e)
+            data_list_raw_g = get_data_gaz(username=user_name_g, password=user_pass_g)
+
+            if isinstance(data_list_raw_e, list) and isinstance(data_list_raw_g, list):
+                data_list_e = [data_list_raw_e[3], data_list_raw_e[4]]
+                data_list_g = [data_list_raw_g[1], data_list_raw_g[3]]
+                st.text("Log-in successful!")
+                st.subheader("EON")
+                st.text(f"Current bill: {data_list_g[0]}")
+                st.text(f"Current date for auto-index: {data_list_g[1]}")
+
+                st.subheader("Electrica")
+                st.text(f"Current bill: {data_list_e[0]}")
+                st.text(f"Current date for auto-index: {data_list_e[1]}")
+            else:
+                st.text("Incorrect credentials!")

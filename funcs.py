@@ -1,5 +1,7 @@
 from datetime import datetime
-
+import smtplib, ssl
+from email.message import EmailMessage
+import os
 months_in_romanian = {
     "Ianuarie": "01",
     "Februarie": "02",
@@ -60,8 +62,21 @@ def index_status(date_range):
     if today > end_date:
         return "Perioada auto-citirii a trecut"
 
+def send_email(user_email, message_raw):
+    host = 'smtp.gmail.com'
+    port = 465
+    context = ssl.create_default_context()
 
+    msg = EmailMessage()
+    msg.set_content(message_raw + '\n' + user_email)
+
+    msg['Subject'] = f'New email from {user_email}'
+    msg['From'] = user_email
+    msg['To'] = "cipi01work@gmail.com"
+
+    with smtplib.SMTP_SSL(host, port, context=context) as server:
+        server.login("cipi01work@gmail.com", os.getenv('gmail-api-pass'))
+        server.send_message(msg)
 
 if __name__ == "__main__":
-    #a = g_date_status(g_text_to_month(data_g))
-    print(a)
+    send_email('cipriangheorghecapata@gmail.com', 'this is atest')
