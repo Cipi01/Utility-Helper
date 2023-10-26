@@ -22,7 +22,7 @@ with st.form(key='emails_form'):
     button = st.form_submit_button("Submit")
     if button:
         if user_email and raw_message:
-            send_email(user_email, message_raw=raw_message, gmail_pass=st.secrets("gmail-api-pass"))
+            send_email(user_email, message_raw=raw_message, gmail_pass=st.secrets["gmail-api-pass"])
             st.success("Email sent successfully!",icon="✅")
         else:
             st.error("Please complete the required fields", icon="🚨")
