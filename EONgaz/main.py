@@ -3,7 +3,7 @@ import selenium
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options
 
 
 def get_data_gaz(username, password):
@@ -17,7 +17,7 @@ def get_data_gaz(username, password):
     options.add_argument("--window-size=1920x1080")
     options.add_argument("--disable-features=VizDisplayCompositor")
 
-    driver = webdriver.Chrome(options)
+    driver = webdriver.Firefox(options)
     driver.implicitly_wait(10)
     driver.get('https://www.eon.ro/myline/login')
     driver.implicitly_wait(10)
