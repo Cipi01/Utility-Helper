@@ -9,7 +9,13 @@ from selenium.webdriver.firefox.options import Options
 def get_data_gaz(username, password):
     options = Options()
     options.binary_location = "C:/Program Files/Mozilla Firefox/firefox.exe"
-    #options.add_argument('-headless')
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--disable-features=NetworkService")
+    options.add_argument("--window-size=1920x1080")
+    options.add_argument("--disable-features=VizDisplayCompositor")
     #options.add_argument('window-size=1920x1080')
     #options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36')
 
