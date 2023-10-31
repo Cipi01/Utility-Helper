@@ -2,7 +2,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.chrome.options import Options
 
 def get_data_el(username, password):
     options = Options()
@@ -14,7 +14,7 @@ def get_data_el(username, password):
     options.add_argument("--window-size=1920x1080")
     options.add_argument("--disable-features=VizDisplayCompositor")
 
-    driver = webdriver.Firefox(options)
+    driver = webdriver.Chrome(options)
 
     driver.get('https://myelectrica.ro/index.php?pagina=login')
 
